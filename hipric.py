@@ -12,7 +12,7 @@ def pull_historical_data(ticker_symbol):
     try:
         urllib.urlretrieve(make_url(ticker_symbol), "history/csv/"+ ticker_symbol +".csv")
     except urllib.ContentTooShortError as e:
-        outfile = open("history/csv/"+ ticker_symbol +".csv", "w")
+        outfile = open("history/csv/"+ ticker_symbol +"___.csv", "w")
         outfile.write(e.content)
         outfile.close()
      
@@ -21,6 +21,7 @@ def cmon(symbol):
 
 def usage():
 	os.system('clear')
+	print '────────────────────────────────────────────────'
 	print '█──█──███──████──████──███──████─────████──██─██'
 	print '█──█───█───█──█──█──█───█───█──█─────█──█───███'
 	print '████───█───████──████───█───█────────████────█'
@@ -40,7 +41,6 @@ def usage():
 	print '-i, --ifile - file where we can find all tickers(default is file "ticker.txt")'
 	print
 	print 'Examples:'
-	print 'hipric.py -r /my_dir/tickers_dir/t.txt'
 	print 'hipric.py -i /my_dir/tickers_dir/t.txt'
 
 def main(argv):

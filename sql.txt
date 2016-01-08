@@ -1,0 +1,84 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'History'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `History`;
+		
+CREATE TABLE `History` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `data` DATE NOT NULL,
+  `open` DECIMAL NOT NULL,
+  `close` DECIMAL NOT NULL,
+  `high` DECIMAL NOT NULL,
+  `low` DECIMAL NOT NULL,
+  `adj_close` DECIMAL NOT NULL,
+  `volume` DECIMAL NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'SP500'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `SP500`;
+		
+CREATE TABLE `SP500` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(6) NOT NULL DEFAULT 'NULL',
+  `updated` DATE NOT NULL,
+  `new field` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'Today'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `Today`;
+		
+CREATE TABLE `Today` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `last_tradecur` DECIMAL NOT NULL,
+  `last_tradedatetime` DATE NOT NULL,
+  `last_tradeprice` DECIMAL NOT NULL,
+  `last_tradetime` TIME NOT NULL ,
+  `last_tradelong` DATE NOT NULL,
+  `refreshed` TIME NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+ALTER TABLE `History` ADD FOREIGN KEY (id) REFERENCES `SP500` (`id`);
+ALTER TABLE `Today` ADD FOREIGN KEY (id) REFERENCES `SP500` (`id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `History` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `SP500` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Today` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `History` (`id`,`data`,`open`,`close`,`high`,`low`,`adj_close`,`volume`) VALUES
+-- ('','','','','','','','');
+-- INSERT INTO `SP500` (`id`,`name`,`updated`,`new field`) VALUES
+-- ('','','','');
+-- INSERT INTO `Today` (`id`,`last_tradecur`,`last_tradetime`,`last_tradeprice`,`last_tradetime`,`last_tradelong`,`refreshed`) VALUES
+-- ('','','','','','','');
